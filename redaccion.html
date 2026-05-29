@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redacción — GeoVoz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f9f7f4;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --muted: #777;
+      --border: #ece8e0;
+      --accent: #c8a96e;
+      --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); }
+
+    /* Nav */
+    nav {
+      background: var(--dark);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    nav .back {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    nav .back:hover { color: #fff; }
+
+    /* Hero banner */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3a3020 100%);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '✍️';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.04;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .hero p {
+      color: #aaa;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .hero .accent-line {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 24px auto;
+    }
+
+    /* Grupos index */
+    .grupos-index {
+      max-width: 1000px;
+      margin: 60px auto 0;
+      padding: 0 32px;
+    }
+    .grupos-index h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--dark);
+      margin-bottom: 32px;
+      border-left: 4px solid var(--accent);
+      padding-left: 16px;
+    }
+    .grupos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .grupo-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.25rem;
+      transition: all 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .grupo-btn:hover {
+      border-color: var(--accent);
+      background: #fffdf8;
+      transform: translateY(-2px);
+    }
+    .grupo-btn .num {
+      background: var(--dark);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .grupo-btn .logo-img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* Sección de cada grupo */
+    .grupo-section {
+      max-width: 1000px;
+      margin: 0 auto 60px;
+      padding: 0 32px;
+    }
+    .grupo-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .grupo-header .logo-circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grupo-header .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .grupo-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dark);
+    }
+    .grupo-header p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Tarjetas de trabajos */
+    .trabajos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .trabajo-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .trabajo-card:hover { transform: translateY(-3px); }
+    .trabajo-card .trabajo-preview {
+      height: 160px;
+      background: #f0ede8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 0.85rem;
+    }
+    .trabajo-card .trabajo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .trabajo-card .trabajo-info {
+      padding: 16px;
+    }
+    .trabajo-card .trabajo-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .trabajo-card .trabajo-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Placeholder vacío */
+    .placeholder-msg {
+      background: var(--white);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      color: #bbb;
+      font-size: 0.9rem;
+      grid-column: 1 / -1;
+    }
+    .placeholder-msg span { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+    /* Divider */
+    .section-divider {
+      max-width: 1000px;
+      margin: 0 auto 60px;
+      padding: 0 32px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      background: var(--dark);
+      color: #aaa;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <span class="logo">✍️ GeoVoz — Redacción</span>
+    <a href="index.html" class="back">← Volver al Blog</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>REDACCIÓN</h1>
+    <div class="accent-line"></div>
+    <p>Trabajos académicos de redacción por grupos — Ingeniería Geográfica · UNMSM</p>
+  </div>
+
+  <!-- Índice de grupos -->
+  <div class="grupos-index">
+    <h2>Grupos del curso</h2>
+    <div class="grupos-grid">
+      <a href="#grupo-1" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=160pZ4ntUEs3REeD2e4aya5ziN8KHchkh" class="logo-img" alt="">
+        LOS TOPOGRAFITOS
+      </a>
+      <a href="#grupo-2" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1xaV42Wu2KQCO11Ix-7TEVMyGp8jHg37e" class="logo-img" alt="">
+        LOS GRUPO 5
+      </a>
+      <a href="#grupo-3" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1-jtz-xN-_fWjJ7mVxJsXp7J0O_sL3swU" class="logo-img" alt="">
+        LOS TOPOS DEL SABER
+      </a>
+      <a href="#grupo-4" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1BxpHeycj8nCUttHxhhpIafWbwXN0oPUk" class="logo-img" alt="">
+        LOS DESVELADOS
+      </a>
+      <a href="#grupo-5" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1hentTkIsnqnhwe48WTFOmgufF9rp5hSS" class="logo-img" alt="">
+        GIS MASTERS
+      </a>
+      <a href="#grupo-6" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1qfQoxS4_cnUT172hPiExqh5cdBgjrGZn" class="logo-img" alt="">
+        LOS TEODOLITOS
+      </a>
+      <a href="#grupo-7" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1e9a6VYKJ-ujSa7DLUv-oBL4RPwLIMHey" class="logo-img" alt="">
+        LOS INSURGENTES DE SAN MARCOS
+      </a>
+      <a href="#grupo-8" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1o1gcn-8ol2zrcKXWG2g0GXXGZvaUGYWm" class="logo-img" alt="LOS GEOVANGUARDISTAS">
+        LOS GEOVANGUARDISTAS
+      </a>
+    </div>
+  </div>
+
+  <!-- GRUPO 1 -->
+  <div class="grupo-section" id="grupo-1">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=160pZ4ntUEs3REeD2e4aya5ziN8KHchkh" alt="LOS TOPOGRAFITOS">
+      </div>
+      <div>
+        <h2>LOS TOPOGRAFITOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 2 -->
+  <div class="grupo-section" id="grupo-2">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1xaV42Wu2KQCO11Ix-7TEVMyGp8jHg37e" alt="LOS GRUPO 5">
+      </div>
+      <div>
+        <h2>LOS GRUPO 5</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 3 -->
+  <div class="grupo-section" id="grupo-3">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1-jtz-xN-_fWjJ7mVxJsXp7J0O_sL3swU" alt="LOS TOPOS DEL SABER">
+      </div>
+      <div>
+        <h2>LOS TOPOS DEL SABER</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 4 -->
+  <div class="grupo-section" id="grupo-4">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1BxpHeycj8nCUttHxhhpIafWbwXN0oPUk" alt="LOS DESVELADOS">
+      </div>
+      <div>
+        <h2>LOS DESVELADOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 5 -->
+  <div class="grupo-section" id="grupo-5">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1hentTkIsnqnhwe48WTFOmgufF9rp5hSS" alt="GIS MASTERS">
+      </div>
+      <div>
+        <h2>GIS MASTERS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 6 -->
+  <div class="grupo-section" id="grupo-6">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1qfQoxS4_cnUT172hPiExqh5cdBgjrGZn" alt="LOS TEODOLITOS">
+      </div>
+      <div>
+        <h2>LOS TEODOLITOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 7 -->
+  <div class="grupo-section" id="grupo-7">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1e9a6VYKJ-ujSa7DLUv-oBL4RPwLIMHey" alt="LOS INSURGENTES DE SAN MARCOS">
+      </div>
+      <div>
+        <h2>LOS INSURGENTES DE SAN MARCOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 8 -->
+  <div class="grupo-section" id="grupo-8">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1o1gcn-8ol2zrcKXWG2g0GXXGZvaUGYWm" alt="LOS GEOVANGUARDISTAS">
+      </div>
+      <div>
+        <h2>LOS GEOVANGUARDISTAS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <div class="placeholder-msg"><span>📂</span> Los trabajos de este grupo se agregarán próximamente.</div>
+    </div>
+  </div>
+
+  <footer>
+    GeoVoz — Redacción Académica · Ingeniería Geográfica · UNMSM · 2025
+  </footer>
+
+</body>
+</html>
