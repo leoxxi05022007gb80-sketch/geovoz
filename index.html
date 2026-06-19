@@ -42,7 +42,7 @@
 
     /* Layout Containers */
     .container {
-      max-width: 1100px;
+      max-width: 1320px;
       margin: 0 auto;
       padding: 0 24px;
     }
@@ -167,6 +167,66 @@
       font-size: 1.125rem;
       line-height: 1.8;
       max-width: 800px;
+    }
+
+    /* Cover / Portada del equipo */
+    .team-cover {
+      position: relative;
+      margin-top: 40px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px -20px rgba(0,0,0,0.35);
+      background: oklch(18% 0.01 50);
+    }
+
+    .team-cover img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+
+    .team-cover-content {
+      padding: 32px 48px 40px;
+      color: white;
+    }
+
+    .team-cover-content .eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: oklch(85% 0.1 145);
+      background: oklch(45% 0.12 145 / 0.25);
+      border: 1px solid oklch(85% 0.1 145 / 0.35);
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .team-cover-content h3 {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin: 0 0 12px;
+      max-width: 720px;
+    }
+
+    .team-cover-content p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: rgba(255,255,255,0.85);
+      max-width: 640px;
+      margin: 0;
+    }
+
+    @media (max-width: 640px) {
+      .team-cover img { max-height: 320px; }
+      .team-cover-content { padding: 24px 24px 32px; }
+      .team-cover-content h3 { font-size: 1.5rem; }
+      .team-cover-content p { font-size: 0.95rem; }
     }
 
     /* Section 2: Netiqueta */
@@ -426,40 +486,75 @@
       transform: translateX(4px);
     }
 
-    /* Section: TikTok Style Videos */
+    /* Section: ExpoTips Video Showcase */
     #videos-exposicion {
-      background: #121212;
+      background:
+        radial-gradient(circle at 15% 0%, oklch(45% 0.12 145 / 0.25), transparent 45%),
+        radial-gradient(circle at 100% 30%, oklch(68% 0.12 240 / 0.18), transparent 50%),
+        oklch(18% 0.01 50);
       color: white;
-      border-radius: var(--radius);
+      border-radius: 24px;
       margin-bottom: 80px;
+      border: 1px solid oklch(100% 0 0 / 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #videos-exposicion .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+      margin-bottom: 24px;
+    }
+
+    #videos-exposicion .back-button:hover {
+      opacity: 1;
     }
 
     #videos-exposicion .section-title {
       color: white;
+      letter-spacing: -0.02em;
     }
 
     #videos-exposicion .section-subtitle {
-      color: #aaa;
+      color: oklch(80% 0.01 50);
     }
 
     .tiktok-grid {
       display: flex;
       justify-content: center;
-      gap: 40px;
+      gap: 28px;
       flex-wrap: wrap;
-      margin-top: 40px;
+      margin-top: 48px;
     }
 
     .tiktok-card {
-      width: 320px;
-      height: 568px; /* 9:16 ratio approximately */
-      background: #000;
-      border-radius: 12px;
+      width: 280px;
+      height: 497px; /* 9:16 ratio */
+      background: #0a0a0a;
+      border-radius: 18px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.06) inset,
+        0 20px 40px -12px rgba(0,0,0,0.6);
       display: flex;
       flex-direction: column;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, border-color 0.35s;
+    }
+
+    .tiktok-card:hover {
+      transform: translateY(-6px);
+      border-color: oklch(68% 0.12 240 / 0.5);
+      box-shadow:
+        0 1px 0 rgba(255,255,255,0.08) inset,
+        0 28px 50px -14px rgba(0,0,0,0.7),
+        0 0 0 1px oklch(68% 0.12 240 / 0.15);
     }
 
     .tiktok-video-area {
@@ -467,24 +562,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #1a1a1a;
+      background: linear-gradient(160deg, #1c1c1c, #0a0a0a);
       position: relative;
     }
 
     .tiktok-video-area::before {
       content: '▶';
-      font-size: 4rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 3rem;
+      color: rgba(255,255,255,0.15);
     }
 
-    /* TikTok Sidebar */
+    /* Sidebar actions */
     .tiktok-sidebar {
       position: absolute;
-      right: 12px;
-      bottom: 80px;
+      right: 10px;
+      bottom: 88px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px;
       align-items: center;
       z-index: 10;
     }
@@ -493,51 +588,76 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 600;
       cursor: pointer;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.6);
     }
 
     .tiktok-action span.icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,255,255,0.15);
+      width: 36px;
+      height: 36px;
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       margin-bottom: 4px;
+      transition: background 0.2s, transform 0.2s, border-color 0.2s;
     }
 
-    /* TikTok Info Overlay */
+    .tiktok-action:hover span.icon {
+      background: oklch(45% 0.12 145 / 0.35);
+      border-color: oklch(68% 0.4 25 / 0.6);
+      transform: scale(1.08);
+    }
+
+    /* Info overlay */
     .tiktok-info {
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      padding: 20px;
-      background: linear-gradient(transparent, rgba(0,0,0,0.8));
+      padding: 18px 50px 18px 16px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.92) 75%);
       z-index: 5;
     }
 
     .tiktok-info .author {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 0.88rem;
       margin-bottom: 4px;
-      display: block;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      letter-spacing: 0.01em;
+    }
+
+    .tiktok-info .author::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: oklch(45% 0.12 145);
+      display: inline-block;
+      box-shadow: 0 0 6px oklch(45% 0.12 145);
     }
 
     .tiktok-info .title {
-      font-size: 0.9rem;
-      margin-bottom: 8px;
+      font-size: 0.82rem;
+      margin-bottom: 6px;
       line-height: 1.4;
+      color: rgba(255,255,255,0.85);
     }
 
     .tiktok-info .hashtags {
-      font-size: 0.85rem;
-      color: #38bdf8; /* Light blue TikTok style */
+      font-size: 0.76rem;
+      color: oklch(75% 0.1 240); /* brand sky blue */
       font-weight: 600;
+      line-height: 1.4;
     }
 
     .tiktok-progress {
@@ -545,7 +665,7 @@
       bottom: 0;
       left: 0;
       height: 3px;
-      background: #fe2c55; /* TikTok pink/red */
+      background: linear-gradient(90deg, oklch(45% 0.12 145), oklch(68% 0.12 240));
       width: 60%;
     }
 
@@ -748,6 +868,15 @@
             <p>Te invitamos a explorar cada rincón, comentar nuestras publicaciones y convertirte en parte activa de esta comunidad de aprendizaje. ¡El mapa de nuestro conocimiento lo trazamos juntos!</p>
           </div>
         </div>
+
+        <div class="team-cover">
+          <img src="https://lh3.googleusercontent.com/d/1ekP_NjpfySvEKtDv33WuJk0QZCDgdz-H" alt="Equipo de Ingeniería Geográfica" loading="lazy" />
+          <div class="team-cover-content">
+            <span class="eyebrow">Ingeniería Geográfica</span>
+            <h3>Donde el territorio toma voz y cada idea traza su propio mapa.</h3>
+            <p>Somos GeoVoz: un salón, una misma vocación por entender el mundo y la convicción de que comunicarlo bien es tan importante como medirlo.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -810,16 +939,6 @@
         
         <div class="work-card-list">
           <!-- Primera Viñeta/Tarjeta -->
-          <a href="#metodologia" class="work-card">
-            <div class="icon-box">🧩</div>
-            <div class="work-card-info">
-              <h3>Metodología, Estrategias y Técnicas Metodológicas</h3>
-              <p>Organizadores visuales — Trabajo grupal</p>
-            </div>
-            <div class="arrow">→</div>
-          </a>
-
-          <!-- Segunda Viñeta/Tarjeta -->
           <a href="#videos-exposicion" class="work-card">
             <div class="icon-box">🎬</div>
             <div class="work-card-info">
@@ -829,7 +948,7 @@
             <div class="arrow">→</div>
           </a>
 
-          <!-- Tercera Viñeta/Tarjeta -->
+          <!-- Segunda Viñeta/Tarjeta -->
           <a href="redaccion.html" target="_blank" class="work-card">
             <div class="icon-box">✍️</div>
             <div class="work-card-info">
@@ -840,68 +959,6 @@
           </a>
 
           <!-- Agregar más viñetas/trabajos aquí -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Sub-sección: Metodología -->
-    <section id="metodologia" class="container section-padding" style="background: var(--surface); border-radius: var(--radius); margin-bottom: 80px; box-shadow: var(--shadow-sm); border: 1px solid var(--border);">
-      <div class="reveal">
-        <a href="#trabajos" class="back-button">← Volver a Trabajos</a>
-        <h2 class="section-title" style="font-size: 1.75rem;">🧩 Metodología y Estrategias</h2>
-        <p class="section-subtitle">Visualización de organizadores visuales del equipo.</p>
-        
-        <div class="organizer-grid">
-          <!-- Tarjeta 1 -->
-          <div class="organizer-item">
-            <div class="organizer-img-container" onclick="openLightbox('https://drive.google.com/thumbnail?sz=w800&id=1GtT-rCVvGJaCnjs3_I6-BmcanFalhdnh')">
-              <img src="https://drive.google.com/thumbnail?sz=w800&id=1GtT-rCVvGJaCnjs3_I6-BmcanFalhdnh" alt="Cómo Estudiar en Ingeniería">
-            </div>
-            <div class="organizer-content">
-              <h4>Cómo Estudiar en Ingeniería</h4>
-              <p>Estrategias, recursos y mentalidad para el éxito universitario</p>
-            </div>
-          </div>
-          <!-- Tarjeta 2 -->
-          <div class="organizer-item">
-            <div class="organizer-img-container" onclick="openLightbox('https://drive.google.com/thumbnail?sz=w800&id=1OyWJ574dJKuokawBaAKkyQCv6oITPGTX')">
-              <img src="https://drive.google.com/thumbnail?sz=w800&id=1OyWJ574dJKuokawBaAKkyQCv6oITPGTX" alt="Taxonomía de Bloom">
-            </div>
-            <div class="organizer-content">
-              <h4>Taxonomía de Bloom</h4>
-              <p>Propuesta pedagógica que jerarquiza los procesos cognitivos en el aprendizaje</p>
-            </div>
-          </div>
-          <!-- Tarjeta 3 -->
-          <div class="organizer-item">
-            <div class="organizer-img-container" onclick="openLightbox('https://drive.google.com/thumbnail?sz=w800&id=1Fx5QeztDZenwQm9xgjQfr-o6FrGAWs50')">
-              <img src="https://drive.google.com/thumbnail?sz=w800&id=1Fx5QeztDZenwQm9xgjQfr-o6FrGAWs50" alt="Estrategias de Aprendizaje">
-            </div>
-            <div class="organizer-content">
-              <h4>Estrategias de Aprendizaje</h4>
-              <p>Clasificación cognitiva, metacognitiva y factores del aprendizaje</p>
-            </div>
-          </div>
-          <!-- Tarjeta 4 -->
-          <div class="organizer-item">
-            <div class="organizer-img-container" onclick="openLightbox('https://drive.google.com/thumbnail?sz=w800&id=1SHX_3jFlJr0FGFnnJZM8tWiaO7ZBI9PH')">
-              <img src="https://drive.google.com/thumbnail?sz=w800&id=1SHX_3jFlJr0FGFnnJZM8tWiaO7ZBI9PH" alt="Trabajo en Equipo, Liderazgo y Aprendizaje">
-            </div>
-            <div class="organizer-content">
-              <h4>Trabajo en Equipo, Liderazgo y Aprendizaje</h4>
-              <p>Perseverancia, solidaridad, responsabilidad y confianza</p>
-            </div>
-          </div>
-          <!-- Tarjeta 5 -->
-          <div class="organizer-item">
-            <div class="organizer-img-container" onclick="openLightbox('https://drive.google.com/thumbnail?sz=w800&id=14h0N8RiTIv0kQ6y0DH3lkqnc_EkLRm7A')">
-              <img src="https://drive.google.com/thumbnail?sz=w800&id=14h0N8RiTIv0kQ6y0DH3lkqnc_EkLRm7A" alt="Estrategias de Aprendizaje">
-            </div>
-            <div class="organizer-content">
-              <h4>Estrategias de Aprendizaje</h4>
-              <p>Definiciones, clasificación e instrumentos de medición</p>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -945,7 +1002,7 @@
               <div class="tiktok-action"><span class="icon">🔖</span></div>
             </div>
             <div class="tiktok-info">
-              <span class="author">LOS GRUPO 5</span>
+              <span class="author">GRUPO 5</span>
               <p class="title">Consejos para exponer 🎤</p>
               <p class="hashtags">#ExpoTips #IngenieríaGeográfica #GeoVoz #ComunicaciónEfectiva</p>
             </div>
