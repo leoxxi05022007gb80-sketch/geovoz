@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redacción — GeoVoz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f9f7f4;
+      --white: #ffffff;
+      --dark: #1a1a1a;
+      --muted: #777;
+      --border: #ece8e0;
+      --accent: #c8a96e;
+      --shadow: 0 2px 16px rgba(0,0,0,0.07);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--cream); color: var(--dark); }
+
+    /* Nav */
+    nav {
+      background: var(--dark);
+      padding: 16px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: #fff;
+      text-decoration: none;
+    }
+    nav .back {
+      color: #aaa;
+      text-decoration: none;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    nav .back:hover { color: #fff; }
+
+    /* Hero banner */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #3a3020 100%);
+      padding: 80px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '✍️';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.04;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: 2px;
+    }
+    .hero p {
+      color: #aaa;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .hero .accent-line {
+      width: 60px;
+      height: 3px;
+      background: var(--accent);
+      margin: 24px auto;
+    }
+
+    /* Grupos index */
+    .grupos-index {
+      max-width: 1280px;
+      margin: 60px auto 0;
+      padding: 0 32px;
+    }
+    .grupos-index h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--dark);
+      margin-bottom: 32px;
+      border-left: 4px solid var(--accent);
+      padding-left: 16px;
+    }
+    .grupos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .grupo-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 20px;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 700;
+      font-size: 1.25rem;
+      transition: all 0.2s;
+      box-shadow: var(--shadow);
+    }
+    .grupo-btn:hover {
+      border-color: var(--accent);
+      background: #fffdf8;
+      transform: translateY(-2px);
+    }
+    .grupo-btn .num {
+      background: var(--dark);
+      color: #fff;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .grupo-btn .logo-img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+
+    /* Sección de cada grupo */
+    .grupo-section {
+      max-width: 1280px;
+      margin: 0 auto 60px;
+      padding: 0 32px;
+    }
+    .grupo-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .grupo-header .logo-circle {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid var(--border);
+      background: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .grupo-header .logo-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .grupo-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--dark);
+    }
+    .grupo-header p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .integrantes-list p {
+      margin-top: 0;
+      line-height: 1.5;
+    }
+
+    /* Tarjetas de trabajos */
+    .trabajos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .trabajo-card {
+      background: var(--white);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .trabajo-card:hover { transform: translateY(-3px); }
+    .trabajo-card .trabajo-preview {
+      height: 160px;
+      background: #f0ede8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #bbb;
+      font-size: 0.85rem;
+    }
+    .trabajo-card .trabajo-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .trabajo-card .trabajo-info {
+      padding: 16px;
+    }
+    .trabajo-card .trabajo-info h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .trabajo-card .trabajo-info p {
+      font-size: 0.82rem;
+      color: var(--muted);
+    }
+
+    /* Placeholder vacío */
+    .placeholder-msg {
+      background: var(--white);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      color: #bbb;
+      font-size: 0.9rem;
+      grid-column: 1 / -1;
+    }
+    .placeholder-msg span { font-size: 2rem; display: block; margin-bottom: 8px; }
+
+    /* Divider */
+    .section-divider {
+      max-width: 1280px;
+      margin: 0 auto 60px;
+      padding: 0 32px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px;
+      background: var(--dark);
+      color: #aaa;
+      font-size: 0.85rem;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <span class="logo">✍️ GeoVoz — Redacción</span>
+    <a href="index.html" class="back">← Volver al Blog</a>
+  </nav>
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>REDACCIÓN</h1>
+    <div class="accent-line"></div>
+    <p>Trabajos académicos de redacción por grupos — Ingeniería Geográfica · UNMSM</p>
+  </div>
+
+  <!-- Índice de grupos -->
+  <div class="grupos-index">
+    <h2>Grupos del curso</h2>
+    <div class="grupos-grid">
+      <a href="#grupo-1" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=160pZ4ntUEs3REeD2e4aya5ziN8KHchkh" class="logo-img" alt="">
+        LOS TOPOGRAFITOS
+      </a>
+      <a href="#grupo-2" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1_XqSS3eLlE6AvGMF1tJNtFEcMRtelX5z" class="logo-img" alt="">
+        GRUPO 5
+      </a>
+      <a href="#grupo-3" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1-jtz-xN-_fWjJ7mVxJsXp7J0O_sL3swU" class="logo-img" alt="">
+        LOS TOPOS DEL SABER
+      </a>
+      <a href="#grupo-4" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1BxpHeycj8nCUttHxhhpIafWbwXN0oPUk" class="logo-img" alt="">
+        LOS DESVELADOS
+      </a>
+      <a href="#grupo-5" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1hentTkIsnqnhwe48WTFOmgufF9rp5hSS" class="logo-img" alt="">
+        GIS MASTERS
+      </a>
+      <a href="#grupo-6" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1qfQoxS4_cnUT172hPiExqh5cdBgjrGZn" class="logo-img" alt="">
+        LOS TEODOLITOS
+      </a>
+      <a href="#grupo-7" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=16vuOcAFIoYNmYPsz3nxYHxKr58Hwg73U" class="logo-img" alt="">
+        LOS ERUDITOS DE LA HUACA
+      </a>
+      <a href="#grupo-8" class="grupo-btn">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1o1gcn-8ol2zrcKXWG2g0GXXGZvaUGYWm" class="logo-img" alt="LOS GEOVANGUARDISTAS">
+        LOS GEOVANGUARDISTAS
+      </a>
+    </div>
+  </div>
+
+  <!-- GRUPO 1 -->
+  <div class="grupo-section" id="grupo-1">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=160pZ4ntUEs3REeD2e4aya5ziN8KHchkh" alt="LOS TOPOGRAFITOS">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS TOPOGRAFITOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Condori Cervantes Michael</p>
+          <p>- Crispín Yauli Keith</p>
+          <p>- Cruzado Alvites Walter</p>
+          <p>- Díaz Huamán Paul Diego</p>
+          <p>- Domingo Panibra Adriana</p>
+          <p>- Fernández Laos Yadhir</p>
+          <p>- Flores Ochoa Pier Alexander</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1j2PknFUxSlB7HNCbn762g23knSKgSNtl/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1j2PknFUxSlB7HNCbn762g23knSKgSNtl" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1wk0-gIMzz_fs7piBlhKCH1oojZk1gpPu/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1wk0-gIMzz_fs7piBlhKCH1oojZk1gpPu" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1WnvmSGDOq7M5QWlQWLYr8w4ImjT_d4GA/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1WnvmSGDOq7M5QWlQWLYr8w4ImjT_d4GA" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1CCtfYbmiLvgIATpAUucCrL6DS9OmzKR1/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1CCtfYbmiLvgIATpAUucCrL6DS9OmzKR1" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1gBy2UnlMo-vBQpOzETYlbcsibeect7o9/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1gBy2UnlMo-vBQpOzETYlbcsibeect7o9" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1KW-7pXn7Tb5WHFsiV1Q5IAU8Lw2RF4CT/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1KW-7pXn7Tb5WHFsiV1Q5IAU8Lw2RF4CT" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Y0qODhVjB0T-WvSq1uP8XQjchCxxL6nw/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Y0qODhVjB0T-WvSq1uP8XQjchCxxL6nw" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 2 -->
+  <div class="grupo-section" id="grupo-2">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1_XqSS3eLlE6AvGMF1tJNtFEcMRtelX5z" alt="GRUPO 5">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>GRUPO 5</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Iturrizaga Paredes Ricardo Fabián</p>
+          <p>- Jara Palhua Fernando</p>
+          <p>- Landa Víctor</p>
+          <p>- Macha Inga Rovinson</p>
+          <p>- Mamani Erick</p>
+          <p>- Melchor Asunción Daniel</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1mj6J-Nud8UOiMdvvqysa_co2PQ8Ioi0X/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1mj6J-Nud8UOiMdvvqysa_co2PQ8Ioi0X" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://docs.google.com/document/d/19Y1vmqjIEnEBkiIiHHYAaIQNmgKD-9Ot/edit?usp=sharing" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=19Y1vmqjIEnEBkiIiHHYAaIQNmgKD-9Ot" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Documento de Word</p>
+        </div>
+      </a>
+      <a href="https://docs.google.com/presentation/d/1uVS0c3GiaTlnlRUbFUG01JVWhspk5P8u/edit?usp=sharing" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1uVS0c3GiaTlnlRUbFUG01JVWhspk5P8u" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📊'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Presentación</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/12-qpHPAunep3Em6xdZfcIY-BRd5cM-9I/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=12-qpHPAunep3Em6xdZfcIY-BRd5cM-9I" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1rRISF4tSN_uei4CYUbb7PZ8l9fSNGZFF/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1rRISF4tSN_uei4CYUbb7PZ8l9fSNGZFF" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1u-M9RjVMD6boJXIZqdmF_kdtmshh05Mt/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1u-M9RjVMD6boJXIZqdmF_kdtmshh05Mt" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/149WCR1fpi49NnNJKfF_XUqx4sbQiduo_/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=149WCR1fpi49NnNJKfF_XUqx4sbQiduo_" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://docs.google.com/document/d/1ZE1fPRrzKB0v-r9kzTDhFej4_JHkw5zj/edit?usp=sharing" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1ZE1fPRrzKB0v-r9kzTDhFej4_JHkw5zj" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 3 -->
+  <div class="grupo-section" id="grupo-3">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1-jtz-xN-_fWjJ7mVxJsXp7J0O_sL3swU" alt="LOS TOPOS DEL SABER">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS TOPOS DEL SABER</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Flores Santamaría Didier Alonso</p>
+          <p>- Francia Herrera Alberto Segundo</p>
+          <p>- Gallardo Alcántara Ariana Madeley</p>
+          <p>- García Aguado Leytor Anderson</p>
+          <p>- Gonzales Briones Leonardo Daniel</p>
+          <p>- Guzmán Nieves Kleyber Yerson</p>
+          <p>- Huerta Pablo Jhordan Arturo</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/19bHz4AZFwkZ1PG2aB7fHc0vDyjmMeo66/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=19bHz4AZFwkZ1PG2aB7fHc0vDyjmMeo66" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1t9N2ogORFvlmgF_hTNwqjXpnLX9lSSQY/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1t9N2ogORFvlmgF_hTNwqjXpnLX9lSSQY" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/10i63VF6HQbbF3pUZWlQIJ3e03QD9RygN/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1ZChWsCK5v_nqy1_FKHHvUv1BHE1dXY86" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1PW9kKkU80ahw_R3LpgeZZBeB5wPdd7hV/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1PW9kKkU80ahw_R3LpgeZZBeB5wPdd7hV" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/14cbNLML8YJYy06pTrtB9L83q1kQ6ck2X/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=14cbNLML8YJYy06pTrtB9L83q1kQ6ck2X" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Po6Hgh_OkXzoKYlTlyaT9B2sDUtfQ9QI/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Po6Hgh_OkXzoKYlTlyaT9B2sDUtfQ9QI" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1DZak9gqzmLW8Ccg0HWsTTGVMQWgWChDq/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1DZak9gqzmLW8Ccg0HWsTTGVMQWgWChDq" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1xu4NPEmBWgC8hz6Y8aCbW3VTFIk-P1B9/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1xu4NPEmBWgC8hz6Y8aCbW3VTFIk-P1B9" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 4 -->
+  <div class="grupo-section" id="grupo-4">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1BxpHeycj8nCUttHxhhpIafWbwXN0oPUk" alt="LOS DESVELADOS">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS DESVELADOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Quispe López Carlos Manuel</p>
+          <p>- Quispe Herrera Joel Juan</p>
+          <p>- Ramos Román Dominique Romina</p>
+          <p>- Rodríguez Cconislla José Carlos</p>
+          <p>- Rodríguez Cosme Sebastián Matías</p>
+          <p>- Rojas Martel Derek Samir</p>
+          <p>- Sartori Torres Leonardo Marx</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1aB-gXL7I--kWaiCgnnj2_859KfN3t8tL/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1aB-gXL7I--kWaiCgnnj2_859KfN3t8tL" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/14UBzDQ_0PRGtEvC_EDUiHKllGEydDwL8/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=14UBzDQ_0PRGtEvC_EDUiHKllGEydDwL8" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1hBu4ilRRKpKqRYwqVzVmnpKVuQbxV2Ww/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1hBu4ilRRKpKqRYwqVzVmnpKVuQbxV2Ww" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1U6DAzoxQOVTGd1ysgjKPC3LhxhQYN3CM/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1U6DAzoxQOVTGd1ysgjKPC3LhxhQYN3CM" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1cPXgFxV66C36OilubTaFY0v0Ux9c8Btq/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1cPXgFxV66C36OilubTaFY0v0Ux9c8Btq" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1evD1EB-2HAJ1uxcxR7Qml0Ue9iKfrX6y/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1evD1EB-2HAJ1uxcxR7Qml0Ue9iKfrX6y" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://docs.google.com/document/d/1UlRmTuwal2QdF5njOhN7_2xe2yffBl_L/edit?usp=sharing" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1UlRmTuwal2QdF5njOhN7_2xe2yffBl_L" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Documento de Word</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 5 -->
+  <div class="grupo-section" id="grupo-5">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1hentTkIsnqnhwe48WTFOmgufF9rp5hSS" alt="GIS MASTERS">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>GIS MASTERS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Molina Consamollo Edward Antonio</p>
+          <p>- Mudarra Sipión Manuel Abraham</p>
+          <p>- Munguía Cárdenas Ivany Carlos</p>
+          <p>- Muñoz Saldaña David Fernando</p>
+          <p>- Palomino Fernández Jorge André</p>
+          <p>- Paredes Cajas Stefany Antuané</p>
+          <p>- Pretel Sánchez Mathias Emanuel</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1Q2tbcCbjDLQi6FkLTOxG1fiC6hrCWvr6/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Q2tbcCbjDLQi6FkLTOxG1fiC6hrCWvr6" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/11wq2dhjTt0ih3YFzDgrgsSOHLLUa3-cU/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=11wq2dhjTt0ih3YFzDgrgsSOHLLUa3-cU" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/19oCZtJTWTgZ5vXBN7jZuueIwUm1ws8u6/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=19oCZtJTWTgZ5vXBN7jZuueIwUm1ws8u6" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Mjd4zvqB7ezSX6UrK47JaRhxqwV2YmFb/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Mjd4zvqB7ezSX6UrK47JaRhxqwV2YmFb" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1kavo20QY0e1GqQ6cNCGvkpI8IskvGqTs/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1kavo20QY0e1GqQ6cNCGvkpI8IskvGqTs" alt="Actividad 5" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/17Aykab9eLzAsCTlBCoaPwTgGaMezPClV/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=17Aykab9eLzAsCTlBCoaPwTgGaMezPClV" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1adPE2k-f1HVQwXDYRgxxp38iKZVx5eWe/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1adPE2k-f1HVQwXDYRgxxp38iKZVx5eWe" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 6 -->
+  <div class="grupo-section" id="grupo-6">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1qfQoxS4_cnUT172hPiExqh5cdBgjrGZn" alt="LOS TEODOLITOS">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS TEODOLITOS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Cantaro Escalante Ninfa Lucia</p>
+          <p>- Limache Portocarrero Enmanuel Miguel</p>
+          <p>- Sotelo Ccencho Grecia Liliana</p>
+          <p>- Tadeo Aquino Matias Fernando</p>
+          <p>- Tinoco Hermoza Azumi Dalezka</p>
+          <p>- Ttupa Asto Luis Fernando</p>
+          <p>- Vasquez Marcaquispe Naydeli Nicole</p>
+          <p>- Villasante Villalba Carlos Daniel</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1vTTh9mb-xb-jIoRTkVBg9BpHUk0BtXGg/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1vTTh9mb-xb-jIoRTkVBg9BpHUk0BtXGg" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/10bgkuyiUdhEDLqYcIGsSrIuOXb5SYEE-/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=10bgkuyiUdhEDLqYcIGsSrIuOXb5SYEE-" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1JgP7B9i8kCLAgwTcEA9xGKCZTvGEkRrh/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1JgP7B9i8kCLAgwTcEA9xGKCZTvGEkRrh" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1jRfwZhFeYc1GLqUQlcqL1WZjREqH-YhT/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1jRfwZhFeYc1GLqUQlcqL1WZjREqH-YhT" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1d9FUOcuzHbNjHqnhBBGFMFdIhNqjBagN/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1d9FUOcuzHbNjHqnhBBGFMFdIhNqjBagN" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1YBMVx8oxExP1eC_uwJOR34x73k1dytBP/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1YBMVx8oxExP1eC_uwJOR34x73k1dytBP" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1CKcYvIG1uLEuER_4bKdOljicqRjKm91Y/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1CKcYvIG1uLEuER_4bKdOljicqRjKm91Y" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1YjNIYnhkCUWX80rIO55OqYxBLFxvgM53/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1YjNIYnhkCUWX80rIO55OqYxBLFxvgM53" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 7 -->
+  <div class="grupo-section" id="grupo-7">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=16vuOcAFIoYNmYPsz3nxYHxKr58Hwg73U" alt="LOS ERUDITOS DE LA HUACA">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS ERUDITOS DE LA HUACA</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Aquino Cruz Max Daniel</p>
+          <p>- Atiro Jimenez Madelyn Tamara</p>
+          <p>- Ayala Carhuas Alexander Klaus</p>
+          <p>- Ayma Valdez Abigail Dayana</p>
+          <p>- Baquerizo Chocce Jesús Joaquín</p>
+          <p>- Barrionuevo Cabrera Borny Keyler</p>
+          <p>- Berroa Ticona Jarol Jahir</p>
+          <p>- Chipana Lozano Alexander Antonio</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1V94-5utm1ftWEQj1HD5TAzEUG6JoX_5F/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1V94-5utm1ftWEQj1HD5TAzEUG6JoX_5F" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/15iPvQNGq70hypqRmTil2fLnB67SKOVAJ/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=15iPvQNGq70hypqRmTil2fLnB67SKOVAJ" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Up7Be0OXsyMwOf-vigQPoFy1UW0GcYRF/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Up7Be0OXsyMwOf-vigQPoFy1UW0GcYRF" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1vzeYGNfyJ9adDxduHZ5mrJ2CJQvjavqU/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1vzeYGNfyJ9adDxduHZ5mrJ2CJQvjavqU" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1p2EJzxxL9xBMGAuQoO3XLw5UbcmX9r7Y/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1p2EJzxxL9xBMGAuQoO3XLw5UbcmX9r7Y" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1LY4AV0Gg8uV92LxObsMD3URRFHA9zZyD/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1LY4AV0Gg8uV92LxObsMD3URRFHA9zZyD" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Vgs6OaN6kgbHAnXnQzpYmNiTTpanddKe/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Vgs6OaN6kgbHAnXnQzpYmNiTTpanddKe" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1RADX0i54aKz1aHyznP9s6x-OyViQp-rD/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1RADX0i54aKz1aHyznP9s6x-OyViQp-rD" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <hr class="section-divider">
+
+  <!-- GRUPO 8 -->
+  <div class="grupo-section" id="grupo-8">
+    <div class="grupo-header">
+      <div class="logo-circle">
+        <img src="https://drive.google.com/thumbnail?sz=w800&id=1o1gcn-8ol2zrcKXWG2g0GXXGZvaUGYWm" alt="LOS GEOVANGUARDISTAS">
+      </div>
+      <div style="margin-top:-6px;">
+        <h2>LOS GEOVANGUARDISTAS</h2>
+        <p>Trabajos de clase — Redacción académica</p>
+        <div class="integrantes-list" style="margin-top:10px;">
+          <p>Integrantes:</p>
+          <p>- Castrejón Herrera Fernanda Olenca</p>
+          <p>- Castro Acuña Luis Jean Paul</p>
+          <p>- Cavero Enríquez Jean Franco Jesús</p>
+          <p>- Ccorahua García Jean Pablo</p>
+          <p>- Chirre Ramos Shania Yadhira Natsumi</p>
+          <p>- Choque Araujo Maricielo</p>
+        </div>
+      </div>
+    </div>
+    <div class="trabajos-grid">
+      <a href="https://drive.google.com/file/d/1yfIjLDMMtH1ixGh5c_u6J6jRxl9SaD99/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1yfIjLDMMtH1ixGh5c_u6J6jRxl9SaD99" alt="Actividad 1" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 1</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1RLQcTNsuFvb7a3GhkCUJQ-M2nacOggX2/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1RLQcTNsuFvb7a3GhkCUJQ-M2nacOggX2" alt="Actividad 2" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 2</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1qn-6wt2DO-CBCrIRLjUZ7X0SfZ2XWsAN/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1qn-6wt2DO-CBCrIRLjUZ7X0SfZ2XWsAN" alt="Actividad 3" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 3</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1TJQxASPDX4jcLpIfC6W0hL78AnLfmqNV/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1TJQxASPDX4jcLpIfC6W0hL78AnLfmqNV" alt="Actividad 4" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 4</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/1Hv4KjVr_6TcSgQAwtJs8rgsf120kRt6D/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=1Hv4KjVr_6TcSgQAwtJs8rgsf120kRt6D" alt="Actividad 5 (parcial)" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 5 (parcial)</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/17T6kPXnYxcjStLNpQQt0mT8SjPosK1D6/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=17T6kPXnYxcjStLNpQQt0mT8SjPosK1D6" alt="Actividad 6" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 6</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+      <a href="https://drive.google.com/file/d/198oMh0XnYzMKpeXYWNs2O6HObMV3VaGb/view" target="_blank" class="trabajo-card" style="text-decoration:none; display:block;">
+        <div class="trabajo-preview"><img src="https://drive.google.com/thumbnail?sz=w800&id=198oMh0XnYzMKpeXYWNs2O6HObMV3VaGb" alt="Actividad 7" style="width:100%;height:100%;object-fit:cover;" onerror="this.parentElement.innerHTML='📄'"></div>
+        <div class="trabajo-info">
+          <h4>Actividad 7</h4>
+          <p>Trabajo de redacción académica</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    GeoVoz — Redacción Académica · Ingeniería Geográfica · UNMSM · 2025
+  </footer>
+
+</body>
+</html>
